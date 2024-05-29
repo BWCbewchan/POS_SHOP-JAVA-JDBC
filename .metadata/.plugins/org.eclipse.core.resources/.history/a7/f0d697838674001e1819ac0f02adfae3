@@ -1,0 +1,38 @@
+package gui;
+
+import java.awt.CardLayout;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+public class BanHang extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public BanHang() {
+
+		// Đặt kích thước mặc định cho JPanel QuanLySanPham
+		setPreferredSize(new Dimension(947, 664));
+		
+		JPanel mainPanel = new JPanel();
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, 662, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		mainPanel.setLayout(new CardLayout(0, 0));
+		setLayout(groupLayout);
+		
+		
+	}
+}

@@ -1,0 +1,66 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class BanHang extends JPanel {
+	public JPanel mainPanel = new JPanel();
+	/**
+	 * Create the panel.
+	 */
+	public BanHang() {
+		
+		// Đặt kích thước mặc định cho JPanel QuanLySanPham
+		setPreferredSize(new Dimension(947, 664));
+		
+		JPanel mainPanel = new JPanel();
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, 662, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		
+		JButton btnBanHang = new JButton("ban Hang");
+		btnBanHang.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
+		gl_mainPanel.setHorizontalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
+					.addContainerGap(848, Short.MAX_VALUE)
+					.addComponent(btnBanHang)
+					.addContainerGap())
+		);
+		gl_mainPanel.setVerticalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnBanHang)
+					.addContainerGap(628, Short.MAX_VALUE))
+		);
+		mainPanel.setLayout(gl_mainPanel);
+		setLayout(groupLayout);
+//		QuanLyBanHang qlbh = new QuanLyBanHang();
+//        mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+//        mainPanel.add(qlbh, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+        
+		
+	}
+}

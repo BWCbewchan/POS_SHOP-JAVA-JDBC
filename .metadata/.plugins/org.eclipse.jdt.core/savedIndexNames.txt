@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+D:\A.HK2-23-24\PTUD\POS-SHOP\.metadata\.plugins\org.eclipse.jdt.core
+2847720421.index
+1701477325.index
+1865797976.index
+4088348075.index

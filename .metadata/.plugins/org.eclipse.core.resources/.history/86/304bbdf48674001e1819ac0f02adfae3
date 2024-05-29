@@ -1,0 +1,526 @@
+package gui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Dialog.ModalExclusionType;
+import javax.swing.JPanel;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import java.awt.ScrollPane;
+import javax.swing.JScrollBar;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.border.LineBorder;
+
+public class uiMain {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					uiMain window = new uiMain();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public uiMain() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
+		
+		JPanel pnlMenu = new JPanel();
+		pnlMenu.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pnlMenu.setBackground(new Color(152, 251, 152));
+		
+		JPanel mainPanel = new JPanel();
+		QuanLyBanHang qlbh_1 = new QuanLyBanHang();
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(pnlMenu, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+//					.addComponent(qlbh_1, GroupLayout.PREFERRED_SIZE, 942, GroupLayout.PREFERRED_SIZE)
+//					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, 659, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addComponent(pnlMenu, GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+//				.addComponent(qlbh_1, GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+		);
+		mainPanel.setLayout(new CardLayout(0, 0));
+		
+		JPanel pnlListMenu = new JPanel();
+		pnlListMenu.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pnlListMenu.setBackground(new Color(255, 255, 255));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(uiMain.class.getResource("/icon/information-employee.png")));
+		
+		JLabel lblNewLabel_1 = new JLabel("Trần Chí Bảo");
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		JLabel lblNewLabel_2 = new JLabel("Chức Vụ : Quản Lý");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GroupLayout gl_pnlMenu = new GroupLayout(pnlMenu);
+		gl_pnlMenu.setHorizontalGroup(
+			gl_pnlMenu.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlMenu.createSequentialGroup()
+					.addGroup(gl_pnlMenu.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnlMenu.createSequentialGroup()
+							.addGap(5)
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_pnlMenu.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel_2)
+								.addComponent(lblNewLabel_1)))
+						.addGroup(gl_pnlMenu.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(pnlListMenu, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+		gl_pnlMenu.setVerticalGroup(
+			gl_pnlMenu.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_pnlMenu.createSequentialGroup()
+					.addGroup(gl_pnlMenu.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnlMenu.createSequentialGroup()
+							.addContainerGap(14, Short.MAX_VALUE)
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(gl_pnlMenu.createSequentialGroup()
+							.addGap(29)
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+							.addComponent(lblNewLabel_2)
+							.addGap(18)))
+					.addGap(18)
+					.addComponent(pnlListMenu, GroupLayout.PREFERRED_SIZE, 560, GroupLayout.PREFERRED_SIZE)
+					.addGap(6))
+		);
+        mainPanel.removeAll();
+        mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+		///chuyển giao diện
+		JPanel btnBanHang = new JPanel();
+		btnBanHang.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				BanHang qlbh = new QuanLyBanHang();
+                mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlbh, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+                
+			}
+		});
+		btnBanHang.setBackground(new Color(34, 139, 34));
+		
+		JPanel btnSanPham = new JPanel();
+		btnSanPham.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuanLySanPham qlsp = new QuanLySanPham();
+                mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlsp, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+			}
+		});
+		btnSanPham.setBackground(new Color(144, 238, 144));
+		
+		
+		JLabel lblSanPham = new JLabel("Sản Phẩm");
+		lblSanPham.setForeground(Color.WHITE);
+		lblSanPham.setFont(new Font("Arial", Font.BOLD, 22));
+		lblSanPham.setBackground(Color.WHITE);
+		
+		JLabel iconSanPham = new JLabel("");
+		iconSanPham.setIcon(new ImageIcon(uiMain.class.getResource("/icon/box.png")));
+		GroupLayout gl_btnSanPham = new GroupLayout(btnSanPham);
+		gl_btnSanPham.setHorizontalGroup(
+			gl_btnSanPham.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnSanPham.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(iconSanPham, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblSanPham)
+					.addGap(20))
+		);
+		gl_btnSanPham.setVerticalGroup(
+			gl_btnSanPham.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_btnSanPham.createSequentialGroup()
+					.addContainerGap(13, Short.MAX_VALUE)
+					.addGroup(gl_btnSanPham.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblSanPham)
+						.addComponent(iconSanPham, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		btnSanPham.setLayout(gl_btnSanPham);
+		
+		JPanel btnHoaDon = new JPanel();
+		btnHoaDon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuanLyHoaDon qlhd = new QuanLyHoaDon();
+				mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlhd, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+			}
+		});
+		btnHoaDon.setBackground(new Color(144, 238, 144));
+		
+		JLabel iconSanPham_1 = new JLabel("");
+		iconSanPham_1.setIcon(new ImageIcon(uiMain.class.getResource("/icon/bill.png")));
+		
+		JLabel lblHoaDon = new JLabel("Hóa Đơn");
+		lblHoaDon.setForeground(Color.WHITE);
+		lblHoaDon.setFont(new Font("Arial", Font.BOLD, 22));
+		lblHoaDon.setBackground(Color.WHITE);
+		GroupLayout gl_btnHoaDon = new GroupLayout(btnHoaDon);
+		gl_btnHoaDon.setHorizontalGroup(
+			gl_btnHoaDon.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 181, Short.MAX_VALUE)
+				.addGroup(gl_btnHoaDon.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(iconSanPham_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblHoaDon)
+					.addGap(20))
+		);
+		gl_btnHoaDon.setVerticalGroup(
+			gl_btnHoaDon.createParallelGroup(Alignment.TRAILING)
+				.addGap(0, 64, Short.MAX_VALUE)
+				.addGroup(gl_btnHoaDon.createSequentialGroup()
+					.addContainerGap(13, Short.MAX_VALUE)
+					.addGroup(gl_btnHoaDon.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblHoaDon)
+						.addComponent(iconSanPham_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		btnHoaDon.setLayout(gl_btnHoaDon);
+		
+		JPanel btnKhuyenMai = new JPanel();
+		btnKhuyenMai.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuanLyKhuyenMai qlkm = new QuanLyKhuyenMai();
+				mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlkm, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+			}
+		});
+		btnKhuyenMai.setBackground(new Color(144, 238, 144));
+		
+		JLabel iconSanPham_1_1 = new JLabel("");
+		iconSanPham_1_1.setIcon(new ImageIcon(uiMain.class.getResource("/icon/sale2.png")));
+		
+		JLabel lblKhuyenMai = new JLabel("Khuyến Mãi");
+		lblKhuyenMai.setForeground(Color.WHITE);
+		lblKhuyenMai.setFont(new Font("Arial", Font.BOLD, 22));
+		lblKhuyenMai.setBackground(Color.WHITE);
+		GroupLayout gl_btnKhuyenMai = new GroupLayout(btnKhuyenMai);
+		gl_btnKhuyenMai.setHorizontalGroup(
+			gl_btnKhuyenMai.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 181, Short.MAX_VALUE)
+				.addGap(0, 181, Short.MAX_VALUE)
+				.addGroup(gl_btnKhuyenMai.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(iconSanPham_1_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblKhuyenMai)
+					.addGap(20))
+		);
+		gl_btnKhuyenMai.setVerticalGroup(
+			gl_btnKhuyenMai.createParallelGroup(Alignment.TRAILING)
+				.addGap(0, 64, Short.MAX_VALUE)
+				.addGap(0, 64, Short.MAX_VALUE)
+				.addGroup(gl_btnKhuyenMai.createSequentialGroup()
+					.addContainerGap(13, Short.MAX_VALUE)
+					.addGroup(gl_btnKhuyenMai.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblKhuyenMai)
+						.addComponent(iconSanPham_1_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		btnKhuyenMai.setLayout(gl_btnKhuyenMai);
+		
+		JPanel btnNhanVien = new JPanel();
+		btnNhanVien.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuanLyNhanVien qlnv = new QuanLyNhanVien();
+				mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlnv, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+			}
+		});
+		btnNhanVien.setBackground(new Color(144, 238, 144));
+		
+		JLabel iconNhanVien = new JLabel("");
+		iconNhanVien.setIcon(new ImageIcon(uiMain.class.getResource("/icon/emlpyee.png")));
+		
+		JLabel lblNhanvien = new JLabel("Nhân Viên");
+		lblNhanvien.setForeground(Color.WHITE);
+		lblNhanvien.setFont(new Font("Arial", Font.BOLD, 22));
+		lblNhanvien.setBackground(Color.WHITE);
+		GroupLayout gl_btnNhanVien = new GroupLayout(btnNhanVien);
+		gl_btnNhanVien.setHorizontalGroup(
+			gl_btnNhanVien.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnNhanVien.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(iconNhanVien, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNhanvien)
+					.addGap(20))
+		);
+		gl_btnNhanVien.setVerticalGroup(
+			gl_btnNhanVien.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_btnNhanVien.createSequentialGroup()
+					.addContainerGap(13, Short.MAX_VALUE)
+					.addGroup(gl_btnNhanVien.createParallelGroup(Alignment.TRAILING)
+						.addComponent(iconNhanVien, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNhanvien))
+					.addContainerGap())
+		);
+		btnNhanVien.setLayout(gl_btnNhanVien);
+		
+		JPanel btnKhachHang = new JPanel();
+		btnKhachHang.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuanLyKhachHang qlkh = new QuanLyKhachHang();
+				mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlkh, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+			}
+		});
+		btnKhachHang.setBackground(new Color(144, 238, 144));
+		
+		JLabel iconKhachHang = new JLabel("");
+		iconKhachHang.setIcon(new ImageIcon(uiMain.class.getResource("/icon/customer.png")));
+		
+		JLabel lblKhachHang = new JLabel("Khách Hàng");
+		lblKhachHang.setForeground(Color.WHITE);
+		lblKhachHang.setFont(new Font("Arial", Font.BOLD, 22));
+		lblKhachHang.setBackground(Color.WHITE);
+		GroupLayout gl_btnKhachHang = new GroupLayout(btnKhachHang);
+		gl_btnKhachHang.setHorizontalGroup(
+			gl_btnKhachHang.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnKhachHang.createSequentialGroup()
+					.addGap(6)
+					.addComponent(iconKhachHang, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblKhachHang)
+					.addGap(45))
+		);
+		gl_btnKhachHang.setVerticalGroup(
+			gl_btnKhachHang.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_btnKhachHang.createSequentialGroup()
+					.addContainerGap(13, Short.MAX_VALUE)
+					.addGroup(gl_btnKhachHang.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblKhachHang)
+						.addComponent(iconKhachHang, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		btnKhachHang.setLayout(gl_btnKhachHang);
+		
+		JPanel btnThongKe = new JPanel();
+		btnThongKe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuanLyThongKe qlsp = new QuanLyThongKe();
+				mainPanel.removeAll(); // Xóa tất cả các thành phần con khỏi mainPanel
+                mainPanel.add(qlsp, BorderLayout.CENTER); // Đặt giao diện quản lý nhân viên vào mainPanel
+                mainPanel.revalidate(); // Cập nhật lại mainPanel để hiển thị giao diện mới
+			}
+		});
+		btnThongKe.setBackground(new Color(144, 238, 144));
+		
+		JLabel iconThongKe = new JLabel("");
+		iconThongKe.setIcon(new ImageIcon(uiMain.class.getResource("/icon/statistical.png")));
+		
+		JLabel lblThongKe = new JLabel("Thống Kê");
+		lblThongKe.setForeground(Color.WHITE);
+		lblThongKe.setFont(new Font("Arial", Font.BOLD, 22));
+		lblThongKe.setBackground(Color.WHITE);
+		GroupLayout gl_btnThongKe = new GroupLayout(btnThongKe);
+		gl_btnThongKe.setHorizontalGroup(
+			gl_btnThongKe.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 181, Short.MAX_VALUE)
+				.addGroup(gl_btnThongKe.createSequentialGroup()
+					.addGap(6)
+					.addComponent(iconThongKe, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblThongKe)
+					.addGap(45))
+		);
+		gl_btnThongKe.setVerticalGroup(
+			gl_btnThongKe.createParallelGroup(Alignment.TRAILING)
+				.addGap(0, 64, Short.MAX_VALUE)
+				.addGroup(gl_btnThongKe.createSequentialGroup()
+					.addContainerGap(13, Short.MAX_VALUE)
+					.addGroup(gl_btnThongKe.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblThongKe)
+						.addComponent(iconThongKe, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		btnThongKe.setLayout(gl_btnThongKe);
+		
+		JPanel btnDangXuat = new JPanel();
+		btnDangXuat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		btnDangXuat.setBackground(new Color(255, 0, 0));
+		
+		JLabel iconDangXuat = new JLabel("");
+		iconDangXuat.setIcon(new ImageIcon(uiMain.class.getResource("/icon/logout3.png")));
+		
+		JLabel lblDangXuat = new JLabel("Đăng Xuất");
+		lblDangXuat.setForeground(Color.WHITE);
+		lblDangXuat.setFont(new Font("Arial", Font.BOLD, 22));
+		lblDangXuat.setBackground(Color.WHITE);
+		GroupLayout gl_btnDangXuat = new GroupLayout(btnDangXuat);
+		gl_btnDangXuat.setHorizontalGroup(
+			gl_btnDangXuat.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnDangXuat.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(iconDangXuat, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblDangXuat)
+					.addContainerGap(24, Short.MAX_VALUE))
+		);
+		gl_btnDangXuat.setVerticalGroup(
+			gl_btnDangXuat.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnDangXuat.createSequentialGroup()
+					.addComponent(iconDangXuat, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(25, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_btnDangXuat.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(lblDangXuat)
+					.addContainerGap())
+		);
+		btnDangXuat.setLayout(gl_btnDangXuat);
+		GroupLayout gl_pnlListMenu = new GroupLayout(pnlListMenu);
+		gl_pnlListMenu.setHorizontalGroup(
+			gl_pnlListMenu.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlListMenu.createSequentialGroup()
+					.addGroup(gl_pnlListMenu.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_pnlListMenu.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_pnlListMenu.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnSanPham, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+								.addComponent(btnBanHang, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+						.addGroup(gl_pnlListMenu.createSequentialGroup()
+							.addGap(12)
+							.addGroup(gl_pnlListMenu.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnKhachHang, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 193, Short.MAX_VALUE)
+								.addComponent(btnNhanVien, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+								.addComponent(btnThongKe, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 193, Short.MAX_VALUE)))
+						.addGroup(gl_pnlListMenu.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_pnlListMenu.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnKhuyenMai, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+								.addComponent(btnHoaDon, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+						.addGroup(gl_pnlListMenu.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnDangXuat, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+		gl_pnlListMenu.setVerticalGroup(
+			gl_pnlListMenu.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlListMenu.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnBanHang, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSanPham, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnHoaDon, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnKhuyenMai, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNhanVien, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnKhachHang, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnThongKe, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+					.addComponent(btnDangXuat, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		
+		JLabel lblIconBanHang = new JLabel("");
+		lblIconBanHang.setIcon(new ImageIcon(uiMain.class.getResource("/icon/buy.png")));
+		
+		JLabel lblBanHang = new JLabel("Bán Hàng");
+		lblBanHang.setForeground(new Color(255, 255, 255));
+		lblBanHang.setBackground(new Color(255, 255, 255));
+		lblBanHang.setFont(new Font("Arial", Font.BOLD, 22));
+		GroupLayout gl_btnBanHang = new GroupLayout(btnBanHang);
+		gl_btnBanHang.setHorizontalGroup(
+			gl_btnBanHang.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnBanHang.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblIconBanHang)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblBanHang)
+					.addGap(24))
+		);
+		gl_btnBanHang.setVerticalGroup(
+			gl_btnBanHang.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_btnBanHang.createSequentialGroup()
+					.addGap(12)
+					.addGroup(gl_btnBanHang.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblIconBanHang)
+						.addComponent(lblBanHang)))
+		);
+		btnBanHang.setLayout(gl_btnBanHang);
+		pnlListMenu.setLayout(gl_pnlListMenu);
+		pnlMenu.setLayout(gl_pnlMenu);
+		frame.getContentPane().setLayout(groupLayout);
+		frame.setBounds(100, 100, 1215, 730);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

@@ -1,0 +1,21 @@
+package gui;
+
+import javax.swing.JPanel;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+
+public class QuanLyHoaDon extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public QuanLyHoaDon() {
+		setLayout(new CardLayout(0, 0));
+		
+		JPanel pnlQuanLyBanHang = new JPanel();
+		add(pnlQuanLyBanHang, "name_103869805176800");
+		pnlQuanLyBanHang.setPreferredSize(new Dimension(947, 664));
+
+	}
+
+}

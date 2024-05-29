@@ -1,0 +1,65 @@
+package entity;
+
+public class ChiTietHoaDon {
+    private int soLuong;
+    private SanPham sanPham;
+    private HoaDon hoaDon;
+
+    public ChiTietHoaDon() {
+        // Constructor mặc nhiên
+    }
+
+    public ChiTietHoaDon(int soLuong, SanPham sanPham, HoaDon hoaDon) {
+        setSoLuong(soLuong);
+        setSanPham(sanPham);
+        setHoaDon(hoaDon);
+    }
+
+    // Copy constructor
+    public ChiTietHoaDon(ChiTietHoaDon other) {
+        this(other.soLuong, other.sanPham, other.hoaDon);
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        if (soLuong <= 0) {
+            throw new IllegalArgumentException("Số lượng phải lớn hơn 0");
+        }
+        this.soLuong = soLuong;
+    }
+
+    public SanPham getSanPham() {
+        return sanPham;
+    }
+
+    public void setSanPham(SanPham sanPham) {
+        // Kiểm tra và xử lý logic kiểm tra sanPham
+        this.sanPham = sanPham;
+    }
+
+    public HoaDon getHoaDon() {
+        return hoaDon;
+    }
+
+    public void setHoaDon(HoaDon hoaDon) {
+        // Kiểm tra và xử lý logic kiểm tra hoaDon
+        this.hoaDon = hoaDon;
+    }
+
+    public double thanhTien() {
+        if (sanPham != null) {
+            double giaSanPham = sanPham.getGia(); // Giả sử có phương thức getGia() trong class SanPham
+            return soLuong * giaSanPham;
+        } else {
+            throw new IllegalArgumentException("Sản phẩm không được null");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ChiTietHoaDon [soLuong=" + soLuong + ", sanPham=" + sanPham + ", hoaDon=" + hoaDon + "]";
+    }
+}

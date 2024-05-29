@@ -1,0 +1,13 @@
+package entity;
+
+STT	Công việc	Kiểu dữ liệu	Ràng buộc	Ghi chú
+1.	Khai báo thuộc tính	 	 	 
+1.1	maKieuDang	String	Dãy ký tự có tiền tố là KDxxx, (x là ký tự số).	{id}, Phát sinh tự động.
+1.2	kieuDang	String	Gồm một chuỗi ký tự, không được có ký tự số và ký tự đặc biệt. Viết hoa chữ cái đầu.	 
+2	Viết các phương thức getter, setter	 	 	 
+2.1	setMaKieuDang(string maKieuDang)	void	KD + Phát sinh dãy số theo quy luật tăng dần số nguyên.	Phát sinh tự động
+2.2	setKieuDang(String kieuDang)	void	Kiểm tra tham số kieuDang không được rỗng	throw exception “Kiểu dáng không được rỗng” nếu tham số “kieuDang” hợp lệ
+3.	Viết các constructor	 	-Constructor mặc nhiên
+-Constructor có đầy đủ tham số
+-Copy constructor	 
+4.	Viết phương thức toString()	String	 	Trả về chuỗi chứa giá trị các thuộc tính của kiểu dáng sản phẩm

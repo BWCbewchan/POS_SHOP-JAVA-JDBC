@@ -1,0 +1,76 @@
+package entity;
+
+public class KhachHang {
+    private String maKH;
+    private String tenKH;
+    private String SDT;
+    private boolean gioiTinh;
+
+    public KhachHang() {
+        // Constructor mặc nhiên
+    }
+
+    public KhachHang(String maKH, String tenKH, String SDT, String email, boolean gioiTinh) {
+        setMaKH(maKH);
+        setTenKH(tenKH);
+        setSDT(SDT);
+        setEmail(email);
+        setGioiTinh(gioiTinh);
+    }
+
+    // Copy constructor
+    public KhachHang(KhachHang other) {
+        this(other.maKH, other.tenKH, other.SDT, other.email, other.gioiTinh);
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        // Kiểm tra và xử lý logic tạo mã KH theo quy luật
+        // Phát sinh tự động
+    }
+
+    public String getTenKH() {
+        return tenKH;
+    }
+
+    public void setTenKH(String tenKH) {
+        if (tenKH != null && tenKH.matches("^[A-Z][a-zA-Z ]+$")) {
+            this.tenKH = tenKH;
+        } else {
+            throw new IllegalArgumentException("Họ tên không hợp lệ");
+        }
+    }
+
+    public String getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(String SDT) {
+        if (SDT != null && SDT.matches("0[0-9]{9}")) {
+            this.SDT = SDT;
+        } else {
+            throw new IllegalArgumentException("Số điện thoại không hợp lệ");
+        }
+    }
+
+
+    public boolean isGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(boolean gioiTinh) {
+        if (gioiTinh != true) {
+            this.gioiTinh = gioiTinh;
+        } else {
+            throw new IllegalArgumentException("Nếu gioiTinh = true thì trả về Nam, ngược lại trả về Nữ");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "KhachHang [maKH=" + maKH + ", tenKH=" + tenKH + ", SDT=" + SDT + ", email=" + email + ", gioiTinh=" + gioiTinh + "]";
+    }
+}

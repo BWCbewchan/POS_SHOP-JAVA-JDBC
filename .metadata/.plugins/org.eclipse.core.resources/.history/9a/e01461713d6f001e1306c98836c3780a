@@ -1,0 +1,67 @@
+package testui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Dialog.ModalExclusionType;
+import javax.swing.JPanel;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+public class banhang {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					banhang window = new banhang();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public banhang() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1800, 1100);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel tab = new JPanel();
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(tab, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(1545, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(tab, GroupLayout.PREFERRED_SIZE, 1100, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(901, Short.MAX_VALUE))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}
